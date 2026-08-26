@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero">
+    <h1>Welcome to Hospital Management System</h1>
+    <p>Efficiently manage patient registrations, tokens, medical records, and quick searches with our streamlined digital portal.</p>
+    <div class="cta-buttons">
+        <a href="{{ url_for('register') }}" class="btn primary">Register New Patient</a>
+        <a href="{{ url_for('patient_list') }}" class="btn secondary">View Patient Directory</a>
+    </div>
+</div>
+{% endblock %}

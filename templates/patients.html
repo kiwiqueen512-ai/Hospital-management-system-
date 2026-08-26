@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient List - CityCare Hospital</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>CityCare Hospital</h1>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('register') }}">Register Patient</a></li>
+                <li><a href="{{ url_for('patient_list') }}">Patient List</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="list-container">
+            <h2>Patient Records & Token Status</h2>
+            
+            <form method="GET" action="{{ url_for('patient_list') }}" class="search-form">
+                <input type="text" name="search" placeholder="Search by name or disease..." value="{{ search_query }}">
+                <button type="submit" class="btn search-btn">Search</button>
+                {% if search_query %}
+                    <a href="{{ url_for('patient_list') }}" class="btn reset-btn">Reset</a>
+                {% endif %}
+            </form>
+
+            {% if patients %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Token #</th>
+                            <th>Patient Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Disease</th>
+                            <th>Assigned Doctor</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in patients %}
+                        <tr>
+                            <td><span class="token-badge">#{{ p['token'] }}</span></td>
+                            <td>{{ p['name'] }}</td>
+                            <td>{{ p['age'] }}</td>
+                            <td>{{ p['gender'] }}</td>
+                            <td>{{ p['disease'] }}</td>
+                            <td>{{ p['doctor'] }}</td>
+                            <td>
+                                <a href="{{ url_for('edit', id=p['id']) }}" class="action-btn edit">Edit</a>
+                                <a href="{{ url_for('delete', id=p['id']) }}" class="action-btn delete" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="no-data">No patient records found.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 CityCare Hospital Management System. Designed for Learners.</p>
+    </footer>
+</body>
+</html>

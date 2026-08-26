@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Patient - CityCare Hospital</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>CityCare Hospital</h1>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('register') }}">Register Patient</a></li>
+                <li><a href="{{ url_for('patient_list') }}">Patient List</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="form-card">
+            <h2>Patient Registration Form</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <label>Patient Full Name:</label>
+                    <input type="text" name="name" placeholder="Enter patient name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Age:</label>
+                    <input type="number" name="age" placeholder="Enter age" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <select name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Disease / Symptom:</label>
+                    <input type="text" name="disease" placeholder="Enter diagnosis or symptoms" required>
+                </div>
+
+                <!-- కొత్తగా యాడ్ చేసిన డాక్టర్ ఫీల్డ్ -->
+                <div class="form-group">
+                    <label>Assign Doctor:</label>
+                    <select name="doctor" required>
+                        <option value="">Select Doctor</option>
+                        <option value="Dr. Ramesh (Cardiology)">Dr. Ramesh (Cardiology)</option>
+                        <option value="Dr. Priya (General Medicine)">Dr. Priya (General Medicine)</option>
+                        <option value="Dr. Suresh (Orthopedics)">Dr. Suresh (Orthopedics)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn primary">Register & Generate Token</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 CityCare Hospital Management System. Designed for Learners.</p>
+    </footer>
+</body>
+</html>
